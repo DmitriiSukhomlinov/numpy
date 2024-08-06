@@ -31,7 +31,8 @@ def configuration(parent_package='', top_path=None):
     else:
         lapack_info = get_info('lapack_opt', 0)  # and {}
 
-    use_lapack_lite = not lapack_info
+    #use_lapack_lite = not lapack_info
+    use_lapack_lite = False
 
     if use_lapack_lite:
         # This makes numpy.distutils write the fact that lapack_lite
@@ -66,7 +67,7 @@ def configuration(parent_package='', top_path=None):
             if sys.platform == 'win32':
                 print("### Warning:  python_xerbla.c is disabled ###")
                 return []
-            return [all_sources[0]]
+            return []
 
     config.add_extension(
         'lapack_lite',
