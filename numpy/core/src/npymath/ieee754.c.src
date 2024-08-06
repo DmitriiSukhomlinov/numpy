@@ -387,6 +387,20 @@ int npy_get_floatstatus() {
 #endif
 
 
+#if defined(__e2k__)
+
+int npy_get_floatstatus_barrier(char* param)
+{
+    return 0;
+}
+
+int npy_clear_floatstatus_barrier(char * param)
+{
+    return 0;
+}
+
+#else
+
 int npy_get_floatstatus_barrier(char* param)
 {
     int fpstatus = fetestexcept(FE_DIVBYZERO | FE_OVERFLOW |
@@ -416,6 +430,7 @@ int npy_clear_floatstatus_barrier(char * param)
     return fpstatus;
 }
 
+#endif
 
 void npy_set_floatstatus_divbyzero(void)
 {
